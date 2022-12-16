@@ -1,15 +1,16 @@
 package IPEMResultChecker;
 
-public class Task1Group2Row1 implements Task1Results {
+public class Task2500Mz implements Task1Results {
 
-    int price = 14000;
-    int demand = 4000;
-    int unitVariableCost = 7000;
-    int fixedCosts = 3850000;
+    //Group 2 row 2
+    int price = 25000;
+    int demand = 4600;
+    int unitVariableCost = 18500;
+    int fixedCosts = 13000000;
 
-    double usageOfCapacity = 0.4;
-    double dropOfCapacity = 0.85;
-    double dropOfDemand = 0.35;
+    double usageOfCapacity = 0.55;
+    double dropOfCapacity = 0.55;
+    double dropOfDemand = 0.4;
 
     int BEPUnits;
     int maxVariableCost;
@@ -40,7 +41,7 @@ public class Task1Group2Row1 implements Task1Results {
         return minimumPrice;
     }
     public double calculateSafetyMarginOfPrice() {
-        int minimumPriceAtLowerOfDemand = (int) (unitVariableCost + (fixedCosts/(0.75 * demand)));
+        int minimumPriceAtLowerOfDemand = (int) (unitVariableCost + (fixedCosts/demand));
         double safetyMarginOfPrice = (double) ((price-minimumPriceAtLowerOfDemand)/price);
         return safetyMarginOfPrice;
     }
@@ -53,17 +54,21 @@ public class Task1Group2Row1 implements Task1Results {
         return safetyMarginOfVariableCost;
     }
     public void profitIfLowCapacity() {
-        double profitIfLowCapacity = (1-dropOfCapacity)*((price-unitVariableCost)-fixedCosts);
-        if (profitIfLowCapacity < 0) {
+        double newCapacity = 1-dropOfCapacity;
+        int profitMargin = price-unitVariableCost;
+        double newCapacityTimesDemand = newCapacity*demand;
+        double profitIfLowCapacity = (newCapacityTimesDemand*profitMargin)-fixedCosts;
+        if ((int)profitIfLowCapacity < 0) {
             System.out.println(profitIfLowCapacity + " -> project NOT profitable");
         } else if (profitIfLowCapacity >= 0) {
             System.out.println(profitIfLowCapacity + " -> project still profitable");
         }
     }
-    public double safetyMarginOfVariableCostUnderLowerDemand() {
-        double safetyMarginOfVariableCostUnderLowerDemand = (double) (price - (fixedCosts / (1-dropOfDemand)* demand));
-        return  safetyMarginOfVariableCostUnderLowerDemand;
+    public int minimumPriceUnderLowerDemand() {
+        int minimumPriceUnderLowerDemand = (int) (unitVariableCost + (fixedCosts/((1-dropOfDemand)*demand)));
+        return minimumPriceUnderLowerDemand;
     }
+
 
     //Data necessary for a student to draw a graph
     public int maxRevenueForChart() {
@@ -74,5 +79,4 @@ public class Task1Group2Row1 implements Task1Results {
         int maxCost = fixedCosts + demand*unitVariableCost;
         return maxCost;
     }
-
 }

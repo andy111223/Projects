@@ -1,0 +1,16 @@
+Olechowska    Student{name='null', surname='Olechowska', group=2, row=0, test1Grade=3.5, test2Grade=0.0, plusesForActivity=0.0, additionalAssignment=0.0, finalGrade=0.0}
+Komorska    Student{name='null', surname='Komorska', group=2, row=0, test1Grade=4.5, test2Grade=0.0, plusesForActivity=0.0, additionalAssignment=0.0, finalGrade=0.0}
+Kozikowski    Student{name='null', surname='Kozikowski', group=2, row=0, test1Grade=3.5, test2Grade=0.0, plusesForActivity=0.0, additionalAssignment=0.0, finalGrade=0.0}
+Keniksman    Student{name='null', surname='Keniksman', group=2, row=0, test1Grade=3.5, test2Grade=0.0, plusesForActivity=0.0, additionalAssignment=0.0, finalGrade=0.0}
+Zwierzchowski    Student{name='null', surname='Zwierzchowski', group=2, row=0, test1Grade=5.0, test2Grade=0.0, plusesForActivity=0.0, additionalAssignment=0.0, finalGrade=0.0}
+Zambrowski    Student{name='null', surname='Zambrowski', group=2, row=0, test1Grade=4.0, test2Grade=0.0, plusesForActivity=0.0, additionalAssignment=0.0, finalGrade=0.0}
+Ambroziak    Student{name='null', surname='Ambroziak', group=2, row=0, test1Grade=5.0, test2Grade=0.0, plusesForActivity=0.0, additionalAssignment=0.0, finalGrade=0.0}
+Furmańska    Student{name='null', surname='Furmańska', group=2, row=0, test1Grade=4.5, test2Grade=0.0, plusesForActivity=0.0, additionalAssignment=0.0, finalGrade=0.0}
+Rojewski    Student{name='null', surname='Rojewski', group=2, row=0, test1Grade=5.0, test2Grade=0.0, plusesForActivity=0.0, additionalAssignment=0.0, finalGrade=0.0}
+Bodziński    Student{name='null', surname='Bodziński', group=2, row=0, test1Grade=4.5, test2Grade=0.0, plusesForActivity=0.0, additionalAssignment=0.0, finalGrade=0.0}
+Jabłonowska    Student{name='null', surname='Jabłonowska', group=2, row=0, test1Grade=3.5, test2Grade=0.0, plusesForActivity=0.0, additionalAssignment=0.0, finalGrade=0.0}
+Górski    Student{name='null', surname='Górski', group=2, row=0, test1Grade=4.5, test2Grade=0.0, plusesForActivity=0.0, additionalAssignment=0.0, finalGrade=0.0}
+Bronakowska    Student{name='null', surname='Bronakowska', group=2, row=0, test1Grade=3.5, test2Grade=0.0, plusesForActivity=0.0, additionalAssignment=0.0, finalGrade=0.0}
+Piotrowska    Student{name='null', surname='Piotrowska', group=2, row=0, test1Grade=4.0, test2Grade=0.0, plusesForActivity=0.0, additionalAssignment=0.0, finalGrade=0.0}
+Waszczyk    Student{name='null', surname='Waszczyk', group=2, row=0, test1Grade=5.0, test2Grade=0.0, plusesForActivity=0.0, additionalAssignment=0.0, finalGrade=0.0}
+Lewicka    Student{name='null', surname='Lewicka', group=2, row=0, test1Grade=4.0, test2Grade=0.0, plusesForActivity=0.0, additionalAssignment=0.0, finalGrade=0.0}

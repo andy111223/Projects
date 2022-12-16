@@ -2,6 +2,6 @@ package IPEMResultChecker;
 
 public interface Task2Results {
 
-    public int variableCostLimitResult();
-    public int variableCostLimitForAGivenProfitResult();
+    public String variableCostLimitResult();
+    public String variableCostLimitForAGivenProfitResult();
 }

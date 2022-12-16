@@ -1,5 +1,8 @@
 package IPEMResultChecker;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class VariableCost1 implements Task2Results {
 
     int fixedCost = 2000000;
@@ -15,22 +18,25 @@ public class VariableCost1 implements Task2Results {
 
     int assumedProfit = 1300000;
 
+    NumberFormat formatter=NumberFormat.getCurrencyInstance(Locale.FRANCE);
 
     @Override
-    public int variableCostLimitResult() {
+    public String variableCostLimitResult() {
 
         int revenue = price1 * quantity1 + price2 * quantity2 + price3 * quantity3;
         int variableCost2And3 = variableCost2*quantity2 + variableCost3*quantity3;
         variableCost1 = (revenue - variableCost2And3 - fixedCost)/quantity1;
-        return variableCost1;
+        String variableCost1inEUR = formatter.format(variableCost1);
+        return variableCost1inEUR;
     }
 
     @Override
-    public int variableCostLimitForAGivenProfitResult() {
+    public String variableCostLimitForAGivenProfitResult() {
 
         int revenue = price1 * quantity1 + price2 * quantity2 + price3 * quantity3;
         int variableCost2And3 = variableCost2*quantity2 + variableCost3*quantity3;
-        variableCost1 = (revenue - variableCost2And3 - fixedCost - fixedCost)/quantity1;
-        return variableCost1;
+        variableCost1 = (revenue - variableCost2And3 - fixedCost - assumedProfit)/quantity1;
+        String variableCost1inEUR = formatter.format(variableCost1);
+        return variableCost1inEUR;
     }
 }
