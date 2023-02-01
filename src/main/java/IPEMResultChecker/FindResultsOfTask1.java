@@ -14,29 +14,25 @@ public class FindResultsOfTask1 implements Task1Results {
     int fixedCosts; //3850000
 
     double usageOfCapacity; //0.4
+    double percentageOfDemand; //0.75
     double dropOfCapacity; //0.85
     double dropOfDemand; //0.35
 
     int BEPUnits;
     int maxVariableCost;
 
-    public FindResultsOfTask1(int price, int demand, int unitVariableCost, int fixedCosts, double usageOfCapacity, double dropOfCapacity, double dropOfDemand) {
+    public FindResultsOfTask1(int price, int demand, int unitVariableCost, int fixedCosts, double usageOfCapacity, double percentageOfDemand, double dropOfCapacity, double dropOfDemand) {
         this.price = price;
         this.demand = demand;
         this.unitVariableCost = unitVariableCost;
         this.fixedCosts = fixedCosts;
         this.usageOfCapacity = usageOfCapacity;
+        this.percentageOfDemand = percentageOfDemand;
         this.dropOfCapacity = dropOfCapacity;
         this.dropOfDemand = dropOfDemand;
     }
 
-    @Override
-    public void showResultsOfTask1() {
-    }
 
-
-    NumberFormat formatter=NumberFormat.getCurrencyInstance(Locale.FRANCE);
-    private static final DecimalFormat df = new DecimalFormat("0.00");
 
 
     public int calculateBEPInUnits() {
@@ -45,8 +41,7 @@ public class FindResultsOfTask1 implements Task1Results {
     }
     public String calculateBEPInSalesValue() {
         int BEPInSalesValue = BEPUnits * price;
-        String BEPInEUR = formatter.format(BEPInSalesValue);
-        return BEPInEUR;
+        return formatter.format(BEPInSalesValue);
     }
 
     public String calculateBEPAsPercentOfProductionCapacity() {
@@ -64,7 +59,7 @@ public class FindResultsOfTask1 implements Task1Results {
         return minimumPriceInEUR;
     }
     public String calculateSafetyMarginOfPrice() {
-        double minimumPriceAtLowerOfDemand = (double) (unitVariableCost + (fixedCosts/(0.75 * demand)));
+        double minimumPriceAtLowerOfDemand = (double) (unitVariableCost + (fixedCosts/(percentageOfDemand * demand)));
         double safetyMarginOfPrice = (double) ((price-minimumPriceAtLowerOfDemand)/price);
         return df.format(safetyMarginOfPrice*100);
     }
@@ -89,12 +84,14 @@ public class FindResultsOfTask1 implements Task1Results {
             System.out.println(profitIfLowCapacityInEUR + " -> project still profitable");
         }
     }
-    public String safetyMarginOfVariableCostUnderLowerDemand() {
+    public String parameterUnderLowerDemand() {
         double newDemandPercentage = 1-dropOfDemand;
         double maxVariableCostUnderLowerDemand = (double) (price - (fixedCosts / (newDemandPercentage * demand)));
         double safetyMarginOfVariableCostUnderLowerDemand = (maxVariableCostUnderLowerDemand - unitVariableCost)/unitVariableCost;
         return df.format(safetyMarginOfVariableCostUnderLowerDemand*100);
     }
+
+    //Data necessary for a student to draw a graph
     public String maxRevenueForChart() {
         int maxRevenue = demand * price;
         String maxRevenueInEUR = formatter.format(maxRevenue);

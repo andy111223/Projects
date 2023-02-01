@@ -12,29 +12,26 @@ public class FindResultsOfTask1Update implements Task1Results{
     int fixedCosts; //3850000
 
     double usageOfCapacity; //0.4
+
+    double percentageOfDemand; //0.75
     double dropOfCapacity; //0.85
     double dropOfDemand; //0.35
 
     int BEPUnits;
     int maxVariableCost;
 
-    public FindResultsOfTask1Update(int price, int demand, int unitVariableCost, int fixedCosts, double usageOfCapacity, double dropOfCapacity, double dropOfDemand) {
+    public FindResultsOfTask1Update(int price, int demand, int unitVariableCost, int fixedCosts, double usageOfCapacity, double percentageOfDemand,double dropOfCapacity, double dropOfDemand) {
         this.price = price;
         this.demand = demand;
         this.unitVariableCost = unitVariableCost;
         this.fixedCosts = fixedCosts;
         this.usageOfCapacity = usageOfCapacity;
+        this.percentageOfDemand = percentageOfDemand;
         this.dropOfCapacity = dropOfCapacity;
         this.dropOfDemand = dropOfDemand;
     }
 
-    @Override
-    public void showResultsOfTask1() {
-    }
 
-
-    NumberFormat formatter=NumberFormat.getCurrencyInstance(Locale.FRANCE);
-    private static final DecimalFormat df = new DecimalFormat("0.00");
 
 
     public int calculateBEPInUnits() {
@@ -73,7 +70,7 @@ public class FindResultsOfTask1Update implements Task1Results{
         return maxVariableCostinEUR;
     }
     public String calculateSafetyMarginOfVariableCost() {
-        double maxVariableCost = (double) (price - (fixedCosts/(0.75*demand)));
+        double maxVariableCost = (double) (price - (fixedCosts/(percentageOfDemand*demand)));
         double safetyMarginOfVariableCost = (double) (maxVariableCost - unitVariableCost)/unitVariableCost;
         return df.format(safetyMarginOfVariableCost*100);
     }
@@ -89,7 +86,7 @@ public class FindResultsOfTask1Update implements Task1Results{
             System.out.println(profitIfLowCapacityInEUR + " -> project still profitable");
         }
     }
-    public String safetyMarginOfVariableCostUnderLowerDemand() {
+    public String parameterUnderLowerDemand() {
         double newDemandPercentage = 1-dropOfDemand;
         double maxVariableCostUnderLowerDemand = (double) (price - (fixedCosts / (newDemandPercentage * demand)));
         double safetyMarginOfVariableCostUnderLowerDemand = (maxVariableCostUnderLowerDemand - unitVariableCost)/unitVariableCost;

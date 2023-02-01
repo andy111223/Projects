@@ -1,5 +1,9 @@
 package IPEMResultChecker;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class Task2500Mz implements Task1Results {
 
     //Group 2 row 2
@@ -9,74 +13,86 @@ public class Task2500Mz implements Task1Results {
     int fixedCosts = 13000000;
 
     double usageOfCapacity = 0.55;
+
+    double percentageOfDemand = 1;
     double dropOfCapacity = 0.55;
     double dropOfDemand = 0.4;
 
     int BEPUnits;
     int maxVariableCost;
 
-    @Override
-    public void showResultsOfTask1() {
-    }
+//    NumberFormat formatter=NumberFormat.getCurrencyInstance(Locale.FRANCE);
+//    private static final DecimalFormat df = new DecimalFormat("0.00");
+
+
 
     public int calculateBEPInUnits() {
         BEPUnits = fixedCosts/(price-unitVariableCost);
         return BEPUnits;
     }
-    public int calculateBEPInSalesValue() {
+    public String calculateBEPInSalesValue() {
         int BEPInSalesValue = BEPUnits * price;
-        return BEPInSalesValue;
+        String BEPInEUR = formatter.format(BEPInSalesValue);
+        return BEPInEUR;
     }
 
-    public double calculateBEPAsPercentOfProductionCapacity() {
+    public String calculateBEPAsPercentOfProductionCapacity() {
         double BEPAsPercentOfProductionCapacity = (double) BEPUnits / demand;
-        return BEPAsPercentOfProductionCapacity;
+        return df.format(BEPAsPercentOfProductionCapacity*100);
     }
-    public int profitAtGivenProductionCapacity() {
+    public String profitAtGivenProductionCapacity() {
         int profitAtGivenProductionCapacity = (int) (usageOfCapacity*demand*(price-unitVariableCost)-fixedCosts);
-        return profitAtGivenProductionCapacity;
+        String profitAtGivenProductionCapacityInEUR = formatter.format(profitAtGivenProductionCapacity);
+        return profitAtGivenProductionCapacityInEUR;
     }
-    public int calculateMinimumPrice() {
+    public String calculateMinimumPrice() {
         int minimumPrice = unitVariableCost + (fixedCosts/demand);
-        return minimumPrice;
+        String minimumPriceInEUR = formatter.format(minimumPrice);
+        return minimumPriceInEUR;
     }
-    public double calculateSafetyMarginOfPrice() {
-        int minimumPriceAtLowerOfDemand = (int) (unitVariableCost + (fixedCosts/demand));
+    public String calculateSafetyMarginOfPrice() {
+        double minimumPriceAtLowerOfDemand = (double) (unitVariableCost + (fixedCosts/(percentageOfDemand * demand)));
         double safetyMarginOfPrice = (double) ((price-minimumPriceAtLowerOfDemand)/price);
-        return safetyMarginOfPrice;
+        return df.format(safetyMarginOfPrice*100);
     }
-    public int calculateMaxVariableCost() {
+    public String calculateMaxVariableCost() {
         maxVariableCost = price - (fixedCosts/demand);
-        return maxVariableCost;
+        String maxVariableCostinEUR = formatter.format(maxVariableCost);
+        return maxVariableCostinEUR;
     }
-    public double calculateSafetyMarginOfVariableCost() {
+    public String calculateSafetyMarginOfVariableCost() {
         double safetyMarginOfVariableCost = (double) (maxVariableCost - unitVariableCost)/unitVariableCost;
-        return safetyMarginOfVariableCost;
+        return df.format(safetyMarginOfVariableCost*100);
     }
     public void profitIfLowCapacity() {
         double newCapacity = 1-dropOfCapacity;
         int profitMargin = price-unitVariableCost;
         double newCapacityTimesDemand = newCapacity*demand;
         double profitIfLowCapacity = (newCapacityTimesDemand*profitMargin)-fixedCosts;
+        String profitIfLowCapacityInEUR = formatter.format(profitIfLowCapacity);
         if ((int)profitIfLowCapacity < 0) {
-            System.out.println(profitIfLowCapacity + " -> project NOT profitable");
+            System.out.println(profitIfLowCapacityInEUR + " -> project NOT profitable");
         } else if (profitIfLowCapacity >= 0) {
-            System.out.println(profitIfLowCapacity + " -> project still profitable");
+            System.out.println(profitIfLowCapacityInEUR + " -> project still profitable");
         }
     }
-    public int minimumPriceUnderLowerDemand() {
+
+
+    public String parameterUnderLowerDemand() {
         int minimumPriceUnderLowerDemand = (int) (unitVariableCost + (fixedCosts/((1-dropOfDemand)*demand)));
-        return minimumPriceUnderLowerDemand;
+        return df.format(minimumPriceUnderLowerDemand);
     }
 
 
     //Data necessary for a student to draw a graph
-    public int maxRevenueForChart() {
+    public String maxRevenueForChart() {
         int maxRevenue = demand * price;
-        return maxRevenue;
+        String maxRevenueInEUR = formatter.format(maxRevenue);
+        return maxRevenueInEUR;
     }
-    public int maxCostsForChart() {
+    public String maxCostsForChart() {
         int maxCost = fixedCosts + demand*unitVariableCost;
-        return maxCost;
+        String maxCostInEUR = formatter.format(maxCost);
+        return maxCostInEUR;
     }
 }

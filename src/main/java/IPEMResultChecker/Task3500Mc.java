@@ -1,6 +1,6 @@
 package IPEMResultChecker;
 
-public class Task3500Mc implements Task1Results {
+public class Task3500Mc {
     //Group 3 row 2
     int price = 3500;
     int demand = 15000;
@@ -14,9 +14,6 @@ public class Task3500Mc implements Task1Results {
     int BEPUnits;
     int maxVariableCost;
 
-    @Override
-    public void showResultsOfTask1() {
-    }
 
     public int calculateBEPInUnits() {
         BEPUnits = fixedCosts/(price-unitVariableCost);
